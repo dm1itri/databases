@@ -218,3 +218,12 @@ FROM production.transaction_history_archive
 GROUP BY product_id
 HAVING MAX(quantity) = 1
 ```
+
+## 30. Найти и вывести на экран номер чека, SalesORDERID, на который приходится с наибольшим разнообразием товаров купленных на этот чек.
+```sql
+SELECT sales_order_id, COUNT(DISTINCT product_id)
+FROM sales.sales_order_detail
+GROUP BY sales_order_id
+ORDER BY COUNT(DISTINCT product_id) DESC 
+LIMIT 1
+```

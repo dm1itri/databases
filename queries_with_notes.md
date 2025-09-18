@@ -244,3 +244,11 @@ FROM production.product
 WHERE product_subcategory_id IS NOT NULL AND color IS NOT NULL
 GROUP BY product_subcategory_id
 ```
+
+## 33. Получить список цветов товаров в порядке убывания количества товаров данного цвета
+```sql
+SELECT color
+FROM production.product
+GROUP BY color
+ORDER BY COUNT(*) DESC
+```

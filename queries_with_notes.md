@@ -210,3 +210,11 @@ FROM production.product
 GROUP BY product_subcategory_id 
 HAVING COUNT(*) > 10;
 ```
+
+## 29. Найти и вывести на экран номера товаров, которые всегда покупались в одном экземпляре за одну покупку.
+```sql
+SELECT product_id
+FROM production.transaction_history_archive
+GROUP BY product_id
+HAVING MAX(quantity) = 1
+```

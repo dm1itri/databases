@@ -227,3 +227,12 @@ GROUP BY sales_order_id
 ORDER BY COUNT(DISTINCT product_id) DESC 
 LIMIT 1
 ```
+
+## 31. Найти и вывести на экран номер чека, SalesORDERID с наибольшей суммой покупки, исходя из того, что цена товара – это UnitPrice, а количество конкретного товара в чеке – это ORDERQty.
+```sql
+SELECT sales_order_id, SUM(order_qty * unit_price) as final_price
+FROM sales.sales_order_detail
+GROUP BY sales_order_id
+ORDER BY final_price DESC 
+LIMIT 1
+```

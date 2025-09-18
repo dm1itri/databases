@@ -236,3 +236,11 @@ GROUP BY sales_order_id
 ORDER BY final_price DESC 
 LIMIT 1
 ```
+
+## 32. Определить количество товаров в каждой подкатегории, исключая товары, для которых подкатегория не определена, и товары, у которых не определен цвет.
+```sql
+SELECT product_subcategory_id, COUNT(*)
+FROM production.product
+WHERE product_subcategory_id IS NOT NULL AND color IS NOT NULL
+GROUP BY product_subcategory_id
+```

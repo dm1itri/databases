@@ -252,3 +252,11 @@ FROM production.product
 GROUP BY color
 ORDER BY COUNT(*) DESC
 ```
+
+## 34. Вывести на экран ProductID тех товаров, что всегда покупались в количестве более 1 единицы на один чек, при этом таких покупок было более двух.
+```sql
+SELECT product_id, COUNT(*)
+FROM sales.sales_order_detail
+GROUP BY product_id
+HAVING MIN(order_qty) > 1
+```

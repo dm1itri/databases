@@ -44,3 +44,14 @@ GROUP BY s.product_subcategory_id
 ORDER BY COUNT(*)
 LIMIT 3
 
+Задание 6
+
+Вывести на экран название подкатегории и максимальную цену продукта с цветом Red в этой подкатегории.
+
+SELECT s.name, MAX(p.list_price)
+FROM production.product AS p
+LEFT JOIN production.product_subcategory AS s
+ON p.product_subcategory_id = s.product_subcategory_id
+WHERE color = 'Red'
+GROUP BY s.product_subcategory_id
+

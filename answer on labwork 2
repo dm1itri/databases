@@ -119,3 +119,14 @@ ON c.product_category_id = s.product_category_id
 JOIN production.product AS p
 ON s.product_subcategory_id  = p.product_subcategory_id
 GROUP BY c.product_category_id
+
+Задание 12
+
+Вывести на экран номер кредитного рейтинга и количество товаров, поставляемых компаниями, имеющими этот кредитный рейтинг.
+
+SELECT v.credit_rating, COUNT(DISTINCT pv.product_id)
+FROM purchasing.vendor AS v
+JOIN purchasing.product_vendor AS pv
+ON v.business_entity_id = pv.business_entity_id
+GROUP BY v.credit_rating
+

@@ -130,3 +130,15 @@ JOIN purchasing.product_vendor AS pv
 ON v.business_entity_id = pv.business_entity_id
 GROUP BY v.credit_rating
 
+Задание 14
+
+Найти первых трех поставщиков, отсортированных по количеству поставляемых товаров, с учетом ситуации, что количество поставляемых товаров может совпадать для разных поставщиков.
+
+SELECT v.name
+FROM purchasing.vendor AS v
+JOIN purchasing.product_vendor AS pv
+ON pv.business_entity_id = v.business_entity_id
+GROUP BY v.name
+ORDER BY COUNT(pv.product_id)
+DESC
+LIMIT 3

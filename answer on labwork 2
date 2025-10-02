@@ -10,3 +10,14 @@ LEFT JOIN production.product_category as c
 ON s.product_category_id = c.product_category_id
 WHERE p.color = 'Red' AND p.list_price >= 100
 
+Задание 3
+
+Вывести на экран название категорий и количество товаров в данной категории.
+
+SELECT c.name, COUNT(*)
+FROM production.product_category AS c
+LEFT JOIN production.product_subcategory AS s
+ON c.product_category_id = s.product_category_id
+LEFT JOIN production.product AS p
+ON s.product_subcategory_id = p.product_subcategory_id
+GROUP BY c.product_category_id

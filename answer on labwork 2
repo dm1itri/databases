@@ -77,3 +77,16 @@ LEFT JOIN purchasing.product_vendor AS pv
 ON p.product_id = pv.product_id
 GROUP BY p.product_id
 HAVING COUNT (*) > 1
+
+Задание 9
+
+Вывести на экран название самого продаваемого товара.
+
+SELECT p.name, SUM(s.order_qty)
+FROM production.product AS p
+JOIN sales.sales_order_detail AS s  // LEFT JOIN не прокатит
+ON p.product_id = s.product_id
+GROUP BY p.product_id
+ORDER BY SUM(s.order_qty)
+DESC
+LIMIT 1

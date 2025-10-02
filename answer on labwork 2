@@ -90,3 +90,21 @@ GROUP BY p.product_id
 ORDER BY SUM(s.order_qty)
 DESC
 LIMIT 1
+
+Задание 10
+
+Вывести на экран название категории, товары из которой продаются наиболее активно.
+
+SELECT c.name
+FROM production.product AS p
+JOIN production.product_subcategory AS s
+ON p.product_subcategory_id = s.product_subcategory_id
+JOIN production.product_category AS c
+ON s.product_category_id = c.product_category_id
+JOIN sales.sales_order_detail AS od
+ON p.product_id = od.product_id
+GROUP BY c.product_category_id
+ORDER BY SUM(od.order_qty)
+DESC
+LIMIT 1
+

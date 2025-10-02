@@ -66,3 +66,14 @@ ON p.product_id = pv.product_id
 LEFT JOIN purchasing.vendor AS v
 ON pv.business_entity_id = v.business_entity_id
 GROUP BY v.business_entity_id
+
+Задание 8
+
+Вывести на экран название товаров, которые поставляются более чем одним поставщиком.
+
+SELECT p.name 
+FROM production.product AS p
+LEFT JOIN purchasing.product_vendor AS pv
+ON p.product_id = pv.product_id
+GROUP BY p.product_id
+HAVING COUNT (*) > 1

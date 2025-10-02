@@ -21,3 +21,13 @@ ON c.product_category_id = s.product_category_id
 LEFT JOIN production.product AS p
 ON s.product_subcategory_id = p.product_subcategory_id
 GROUP BY c.product_category_id
+
+Задание 4
+
+Вывести на экран название подкатегории, а также количество товаров в данной подкатегории с учетом ситуации, что могут существовать подкатегории с одинаковыми именами.
+
+SELECT s.name, COUNT(*)
+FROM production.product AS p
+LEFT JOIN production.product_subcategory AS s
+ON p.product_subcategory_id = s.product_subcategory_id
+GROUP BY s.name

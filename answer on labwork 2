@@ -1,0 +1,12 @@
+Задание 1
+
+Найти и вывести на экран название продуктов и название категорий товаров, к которым относится этот продукт, с учетом того, что в выборку попадут только товары с цветом Red и ценой не менее 100.
+
+SELECT p.name, c.name 
+FROM production.product AS p 
+LEFT JOIN production.product_subcategory as s
+ON p.product_subcategory_id = s.product_subcategory_id
+LEFT JOIN production.product_category as c
+ON s.product_category_id = c.product_category_id
+WHERE p.color = 'Red' AND p.list_price >= 100
+

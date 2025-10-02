@@ -108,3 +108,14 @@ ORDER BY SUM(od.order_qty)
 DESC
 LIMIT 1
 
+Задание 11
+
+Вывести на экран названия категорий, количество подкатегорий и количество товаров в них.
+
+SELECT c.name, COUNT(DISTINCT s.product_subcategory_id), COUNT(DISTINCT p.product_id)
+FROM production.product_category AS c
+JOIN production.product_subcategory AS s
+ON c.product_category_id = s.product_category_id
+JOIN production.product AS p
+ON s.product_subcategory_id  = p.product_subcategory_id
+GROUP BY c.product_category_id

@@ -142,3 +142,13 @@ GROUP BY v.name
 ORDER BY COUNT(pv.product_id)
 DESC
 LIMIT 3
+
+Задание 16
+
+Проверить, есть ли продукты с одинаковым названием, если есть, то вывести эти названия. (Решение через JOIN)
+
+SELECT A.name
+FROM production.product AS A
+
+JOIN production.product as B
+ON A.name = B.name AND A.product_id <> B.product_id

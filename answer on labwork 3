@@ -11,3 +11,23 @@ GROUP BY product_id
 ORDER BY s
 DESC
 LIMIT 1)
+
+Задание 2
+Найти покупателя, совершившего покупку на самую большую сумму, считая сумму покупки исходя из цены товара без скидки (unit_price)
+
+SELECT person_id
+FROM sales.customer
+WHERE customer_id = 
+	(
+	SELECT customer_id 
+	FROM sales.sales_order_header 
+	WHERE sales_order_id = 
+		(
+		SELECT sales_order_id
+		FROM sales.sales_order_detail
+		GROUP BY sales_order_id
+		ORDER BY SUM(unit_price)
+		DESC 
+		LIMIT 1
+		)
+	)

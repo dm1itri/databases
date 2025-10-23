@@ -35,6 +35,21 @@ WHERE customer_id =
 	)
 )
 
+Задание 3
+Найти такие продукты, которые покупал только один покупатель.
+
+SELECT product_id
+FROM sales.sales_order_detail AS sod
+GROUP BY product_id
+HAVING COUNT(DISTINCT 
+	(
+	SELECT customer_id
+	FROM sales.sales_order_header AS soh
+	WHERE sod.sales_order_id = soh.sales_order_id
+	)
+) = 1
+
+
 Задание 4
 Вывести список продуктов, цена которых выше средней цены товаров в подкатегории, к которой относится товар.
 

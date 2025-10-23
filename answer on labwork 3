@@ -34,3 +34,15 @@ WHERE customer_id =
 		LIMIT 1
 	)
 )
+
+Задание 4
+Вывести список продуктов, цена которых выше средней цены товаров в подкатегории, к которой относится товар.
+
+SELECT product_id
+FROM production.product AS p
+WHERE list_price > 
+(
+	SELECT AVG(list_price)
+	FROM production.product AS p2
+	WHERE p.product_subcategory_id = p2.product_subcategory_id
+)

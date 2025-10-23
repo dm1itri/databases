@@ -2,15 +2,16 @@
 
 Найти название самого продаваемого продукта.
 
-SELECT p.name
-FROM production.product as p
-WHERE p.product_id =
-(SELECT product_id as s
+SELECT name
+FROM production.product
+WHERE product_id = 
+(SELECT product_id
 FROM sales.sales_order_detail
 GROUP BY product_id
-ORDER BY s
+ORDER BY  SUM(order_qty)
 DESC
 LIMIT 1)
+
 
 Задание 2
 Найти покупателя, совершившего покупку на самую большую сумму, считая сумму покупки исходя из цены товара без скидки (unit_price)

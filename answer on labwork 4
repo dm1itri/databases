@@ -10,3 +10,18 @@ SELECT
     unit_price * order_qty / SUM(unit_price * order_qty) OVER (PARTITION BY sales_order_id) AS product_share
 FROM sales.sales_order_detail
 ORDER BY sales_order_id, product_share;
+
+
+Вывести список продуктов, их стоимость, а также разницу между стоимостью этого продукта и стоимостью самого дешевого продукта в той же подкатегории, к которой относится продукт 53.
+
+SELECT
+    p.name,
+    p.list_price,
+    p.list_price - MIN(p.list_price) OVER () AS price_difference
+FROM production.product AS p
+WHERE p.product_subcategory_id = (
+    SELECT product_subcategory_id
+    FROM production.product
+    WHERE product_id = 53
+)
+ORDER BY p.list_price;

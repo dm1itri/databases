@@ -25,3 +25,26 @@ WHERE p.product_subcategory_id = (
     WHERE product_id = 53
 )
 ORDER BY p.list_price;
+
+
+Вывести три колонки: номер покупателя, номер чека покупателя (отсортированный по возрастанию даты чека) и искусственно введенный порядковый номер текущего чека, начиная с 1, для каждого покупателя.
+
+SELECT
+    customer_id,
+    sales_order_id,
+    ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY order_date) AS check_number
+FROM sales.sales_order_header;
+
+
+Вывести номера продуктов, таких что их цена выше средней цены продукта в подкатегории, к которой относится продукт. Запрос реализовать двумя способами. В одном из решений допускается использование обобщенного табличного выражения (WITH).
+
+SELECT *
+FROM (
+    SELECT 
+        product_id,
+        name,
+        list_price,
+        AVG(list_price) OVER (PARTITION BY product_subcategory_id) AS avg_price_in_subcat
+    FROM production.product
+)
+WHERE list_price > avg_price_in_subcat;

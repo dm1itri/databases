@@ -1,0 +1,12 @@
+Найти долю продаж каждого продукта (цена продукта × количество продукта) по каждому чеку, в денежном выражении.
+
+SELECT
+    sales_order_id,
+    product_id,
+    order_qty,
+    unit_price,
+    unit_price * order_qty AS product_total,
+    SUM(unit_price * order_qty) OVER (PARTITION BY sales_order_id) AS order_total,
+    unit_price * order_qty / SUM(unit_price * order_qty) OVER (PARTITION BY sales_order_id) AS product_share
+FROM sales.sales_order_detail
+ORDER BY sales_order_id, product_share;

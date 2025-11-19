@@ -1,0 +1,15 @@
+Задание 1
+
+Показать все названия товаров из подкатегории Mountain Bikes (коллекции prod_products и prod_product_subcategories).
+
+db.prod_products.find(
+    {
+        product_subcategory_id: db.prod_product_subcategories.findOne({
+            name: "Mountain Bikes"
+            }).product_subcategory_id
+        },
+    {
+        name: 1,
+        _id: 0,
+        }
+    )

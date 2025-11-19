@@ -13,3 +13,30 @@ db.prod_products.find(
         _id: 0,
         }
     )
+или
+db.prod_products.aggregate(
+    [
+        {
+            $lookup: {
+                from: "prod_product_subcategories",
+                localField: "product_subcategory_id",
+                foreignField: "product_subcategory_id",
+                as: "ps"
+                }
+            },
+        {
+            $unwind: "$ps"
+            },
+        {
+            $match: {
+                "ps.name": "Mountain Bikes"
+                }
+            },
+        {
+            $project: {
+                name: 1,
+                _id: 0,
+                }
+            }
+        ]
+    )

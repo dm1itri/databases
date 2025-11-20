@@ -54,3 +54,25 @@ db.sales_sales_order_headers.find(
         _id: 0
     }
     )
+
+
+Задание 3
+
+Вывести список названий товаров и их количество (Quantity) в заказах (коллекции sales_sales_order_details и prod_products).
+
+db.sales_sales_order_details.aggregate([
+    {
+        $lookup: {
+            from: "prod_products",
+            localField: "product_id",
+            foreignField: "product_id",
+            as: "p"
+            }
+        },
+    {$unwind: "$p"},
+    { $project : {
+        name: "$p.name",
+        order_qty: 1
+        }
+        }
+    ])

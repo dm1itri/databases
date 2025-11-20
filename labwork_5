@@ -76,3 +76,20 @@ db.sales_sales_order_details.aggregate([
         }
         }
     ])
+
+
+Задание 4
+
+Для каждого сотрудника вывести должность (job_title), дату приема на работу (hire_date) и сумму всех выплат (employee_pay_history) (коллекция hr_employees).
+
+db.hr_employees.aggregate([
+    {
+        $project: {
+            _id: 0,
+            jobTitle: "$job_title",
+            hireDate: "$hire_date",
+            pay: {$sum: "$employee_pay_history.rate"}
+            }
+        }
+    ]
+    )

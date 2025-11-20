@@ -40,3 +40,17 @@ db.prod_products.aggregate(
             }
         ]
     )
+
+
+Задание 2
+
+Вывести список названий товаров и их количество (Quantity) в заказах (коллекции sales_sales_order_details и prod_products).
+
+db.sales_sales_order_headers.find(
+    {
+        $expr: {$eq : [{$year : "$order_date"}, 2012]}
+    }, {
+        sales_order_id: 1,
+        _id: 0
+    }
+    )

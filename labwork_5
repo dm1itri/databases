@@ -93,3 +93,22 @@ db.hr_employees.aggregate([
         }
     ]
     )
+
+
+Задание 7
+
+Определить, сколько заказов оформил каждый сотрудник (sales_person_ref) в 2013 году (коллекция sales_sales_order_headers).
+
+db.prod_products.aggregate([
+    {
+        $group : {
+            _id : "$product_subcategory_id",
+            count: {$sum : 1}
+            }
+        },
+    {
+        $match : {
+            count : {$gt : 10}
+        }
+    },
+    ])
